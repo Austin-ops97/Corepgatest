@@ -9,7 +9,9 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="My card" />
   <meta name="theme-color" content="#0071C2" />
-  <link rel="apple-touch-icon" id="apple-icon" href="https://2pbqjgxycewduhvh.public.blob.vercel-storage.com/CORE%20Whole%20Logo%20Transparent%20Black%20Text%20edit.png" />
+  <link rel="apple-touch-icon" id="apple-icon" href="/assets/corepga-logo.png" />
+  <link rel="preload" as="image" href="/assets/corepga-logo.png" media="(prefers-color-scheme: light)" />
+  <link rel="preload" as="image" href="/assets/corepga-logo-white.png" media="(prefers-color-scheme: dark)" />
   <link rel="manifest" id="manifest-link" href="data:application/manifest+json,{}" />
   <title>My CorePGA card</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,7 +26,7 @@
   </div>
 
   <main id="app" class="app" hidden>
-    <img id="logo" class="logo" alt="Core PGA" />
+    <img id="logo" class="logo" src="/assets/corepga-logo.png" width="180" height="36" alt="Core Power Generation Advisors" decoding="async" />
     <img id="photo" class="photo" alt="" hidden />
     <div id="photo-fallback" class="photo fallback" hidden></div>
     <h1 id="name"></h1>

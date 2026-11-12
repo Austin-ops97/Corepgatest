@@ -33,7 +33,17 @@ body {
   margin: 0 auto;
   text-align: center;
 }
-.logo { height: 36px; width: auto; margin: 0 auto 18px; display: block; }
+.logo {
+  display: block;
+  width: 180px;
+  max-width: min(180px, 52vw);
+  height: auto;
+  max-height: 48px;
+  margin: 4px auto 28px;
+  object-fit: contain;
+  object-position: center;
+  background: transparent;
+}
 .photo {
   width: 96px;
   height: 96px;

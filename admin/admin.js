@@ -40,7 +40,6 @@ const builderStatus = document.getElementById('builder-status');
 let cards = [];
 let current = emptyCard();
 let photoFile = null;
-let logoFile = null;
 let slugManual = false;
 let selectedTemplate = 'classic';
 const tabEdit = document.getElementById('tab-edit');
@@ -311,10 +310,6 @@ form.addEventListener('input', (e) => {
     photoFile = e.target.files[0];
     current.photo_url = fileToObjectUrl(photoFile);
   }
-  if (name === 'logo' && e.target.files[0]) {
-    logoFile = e.target.files[0];
-    current.logo_url = fileToObjectUrl(logoFile);
-  }
   refreshPreview();
 });
 
@@ -324,7 +319,6 @@ function readForm() {
   current.company = form.company.value.trim();
   current.website = form.website.value.trim();
   current.email = form.email.value.trim();
-  current.address = form.address.value.trim();
   current.linkedin = form.linkedin.value.trim();
   current.bio = form.bio.value.trim();
   current.slug = slugify(form.slug.value);
@@ -339,14 +333,12 @@ function fillForm(card) {
   current = normalizeCard(card);
   selectedTemplate = current.theme.template;
   photoFile = null;
-  logoFile = null;
   slugManual = Boolean(card.id);
   form.full_name.value = current.full_name;
   form.title.value = current.title;
   form.company.value = current.company;
   form.website.value = current.website;
   form.email.value = current.email;
-  form.address.value = current.address;
   form.linkedin.value = current.linkedin;
   form.bio.value = current.bio;
   form.slug.value = current.slug;
@@ -367,7 +359,6 @@ function refreshPreview() {
     company: form.company?.value || current.company,
     website: form.website?.value || current.website,
     email: form.email?.value || current.email,
-    address: form.address?.value || current.address,
     linkedin: form.linkedin?.value || current.linkedin,
     bio: form.bio?.value || current.bio,
     theme: { template: selectedTemplate, accent: form.accent?.value || current.theme.accent }
@@ -404,12 +395,10 @@ function payloadFrom(card) {
     website: card.website,
     email: card.email,
     phones: card.phones,
-    address: card.address,
     linkedin: card.linkedin,
     extra_links: card.extra_links,
     bio: card.bio,
     photo_url: card.photo_url?.startsWith('blob:') ? '' : card.photo_url,
-    logo_url: card.logo_url?.startsWith('blob:') ? '' : card.logo_url,
     theme: card.theme,
     is_active: card.is_active
   };
@@ -450,14 +439,12 @@ document.getElementById('save-card').addEventListener('click', async () => {
     }
     const updates = {};
     if (photoFile) updates.photo_url = await uploadMedia(saved.id, photoFile, 'photo');
-    if (logoFile) updates.logo_url = await uploadMedia(saved.id, logoFile, 'logo');
     if (Object.keys(updates).length) {
       const { data, error } = await supabase.from('cards').update(updates).eq('id', saved.id).select('*').single();
       if (error) throw error;
       saved = data;
     }
     photoFile = null;
-    logoFile = null;
     current = normalizeCard(saved);
     await loadCards();
     builderStatus.textContent = 'Saved.';

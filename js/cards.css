@@ -15,16 +15,20 @@
 }
 
 .dc-brandbar {
-  padding: 18px 22px 8px;
+  padding: 22px 22px 0;
   display: flex;
   justify-content: center;
 }
 
 .dc-logo {
-  height: 36px;
-  width: auto;
-  max-width: 220px;
+  display: block;
+  width: 180px;
+  max-width: min(180px, 52vw);
+  height: auto;
+  max-height: 48px;
   object-fit: contain;
+  object-position: center;
+  background: transparent;
 }
 
 .dc-identity {
@@ -32,7 +36,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 8px 24px 6px;
+  padding: 22px 24px 6px;
 }
 
 .dc-photo {
@@ -86,19 +90,6 @@
   color: var(--card-muted);
   text-align: center;
 }
-
-.dc-address {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 8px;
-  margin: 14px 22px 0;
-  font-size: 13px;
-  color: var(--card-muted);
-  text-align: center;
-}
-
-.dc-address svg { width: 16px; height: 16px; flex: none; margin-top: 2px; color: var(--accent); }
 
 .dc-phones {
   list-style: none;

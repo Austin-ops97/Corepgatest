@@ -15,10 +15,13 @@ export const DEFAULT_WEBSITE = 'https://www.corepga.com';
 export const DEFAULT_ACCENT = '#0071C2';
 export const DEFAULT_TEMPLATE = 'classic';
 
-export const LOGO_DARK =
-  'https://2pbqjgxycewduhvh.public.blob.vercel-storage.com/CORE%20Whole%20Logo%20Transparent%20Black%20Text%20edit.png';
-export const LOGO_LIGHT =
-  'https://2pbqjgxycewduhvh.public.blob.vercel-storage.com/CORE%20Whole%20Logo%20Transparent%20White%20Text%20edit.png';
+/** Same mark as the Corepgatest site header (500×100 PNG; no SVG in this repo). */
+export const BRAND_LOGO = '/assets/corepga-logo.png';
+export const BRAND_LOGO_ON_DARK = '/assets/corepga-logo-white.png';
+export const BRAND_LOGO_WIDTH = 180;
+export const BRAND_LOGO_HEIGHT = 36;
+export const LOGO_DARK = BRAND_LOGO;
+export const LOGO_LIGHT = BRAND_LOGO_ON_DARK;
 
 export const TEMPLATES = [
   { id: 'classic', label: 'Classic', hint: 'CorePGA blue & white' },

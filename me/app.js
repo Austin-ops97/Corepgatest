@@ -1,8 +1,7 @@
 import { supabase } from '/js/supabase-client.js';
-import { DEFAULT_ACCENT, LOGO_DARK, LOGO_LIGHT } from '/js/config.js';
+import { BRAND_LOGO, BRAND_LOGO_ON_DARK, DEFAULT_ACCENT } from '/js/config.js';
 import {
   copyText,
-  displayLogo,
   downloadVCard,
   normalizeCard,
   parsePathToken,
@@ -32,7 +31,7 @@ function installManifest(card, startUrl) {
     theme_color: card.theme?.accent || DEFAULT_ACCENT,
     icons: [
       {
-        src: card.photo_url || displayLogo(card) || LOGO_DARK,
+        src: card.photo_url || BRAND_LOGO,
         sizes: '192x192',
         type: 'image/png',
         purpose: 'any'
@@ -58,10 +57,10 @@ if (!token) {
     document.title = `${card.full_name} · My card`;
     document.querySelector('meta[name="theme-color"]').setAttribute('content', card.theme.accent || DEFAULT_ACCENT);
     document.querySelector('meta[name="apple-mobile-web-app-title"]').setAttribute('content', (card.full_name || 'Card').split(' ')[0]);
-    document.getElementById('apple-icon').href = card.photo_url || displayLogo(card);
+    document.getElementById('apple-icon').href = card.photo_url || BRAND_LOGO;
 
     const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    document.getElementById('logo').src = dark ? LOGO_LIGHT : displayLogo(card);
+    document.getElementById('logo').src = dark ? BRAND_LOGO_ON_DARK : BRAND_LOGO;
     if (card.photo_url) {
       const photo = document.getElementById('photo');
       photo.src = card.photo_url;

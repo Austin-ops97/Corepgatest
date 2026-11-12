@@ -1,4 +1,11 @@
-import { DEFAULT_ACCENT, DEFAULT_COMPANY, DEFAULT_TEMPLATE, DEFAULT_WEBSITE, LOGO_DARK, LOGO_LIGHT } from './config.js';
+import {
+  BRAND_LOGO,
+  BRAND_LOGO_ON_DARK,
+  DEFAULT_ACCENT,
+  DEFAULT_COMPANY,
+  DEFAULT_TEMPLATE,
+  DEFAULT_WEBSITE
+} from './config.js';
 
 export function origin() {
   return window.location.origin;
@@ -109,11 +116,12 @@ export function absoluteUrl(url) {
 }
 
 export function defaultLogoForTemplate(template) {
-  return template === 'midnight' ? LOGO_LIGHT : LOGO_DARK;
+  return template === 'midnight' ? BRAND_LOGO_ON_DARK : BRAND_LOGO;
 }
 
+/** Always the CorePGA site mark. Per-card uploads are ignored. */
 export function displayLogo(card) {
-  return card.logo_url || defaultLogoForTemplate(card.theme?.template);
+  return defaultLogoForTemplate(card?.theme?.template);
 }
 
 export async function copyText(text) {
@@ -218,7 +226,6 @@ export async function buildVCard(card) {
   if (card.email) lines.push(`EMAIL;TYPE=INTERNET:${vcardEscape(card.email)}`);
   if (card.website) lines.push(`URL:${vcardEscape(absoluteUrl(card.website))}`);
   if (card.linkedin) lines.push(`URL;TYPE=LinkedIn:${vcardEscape(absoluteUrl(card.linkedin))}`);
-  if (card.address) lines.push(`ADR;TYPE=WORK:;;${vcardEscape(card.address)};;;;`);
   if (card.bio) lines.push(`NOTE:${vcardEscape(card.bio)}`);
   const photo = await photoAsBase64(card.photo_url);
   if (photo) {
