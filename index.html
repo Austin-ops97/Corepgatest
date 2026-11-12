@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Core Power Generation Advisors — Industry-leading expertise across the full lifecycle of power generation assets." />
+  <title>Core Power Generation Advisors, INC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --rich-black: #000608;
+      --b1: #33DDFF; --b2: #00BFFF; --b3: #00A1E6;
+      --b4: #008BD1; --b5: #0071C2;
+      --white:  #ffffff; --bg:  #f3f7fc; --bg2: #eaf1f9; --bg3: #dce8f4;
+      --line:  #d8e3ef; --line2: #e8f0f8;
+      --ink:   #000608; --ink2: #253d58; --muted: #4e6a87; --muted2: #7d99b5; --cap: #a3b8cc;
+      --btint: rgba(0,113,194,.07); --btint2: rgba(0,161,230,.12);
+      --serif: 'Playfair Display', Georgia, serif;
+      --body:  'Source Sans 3', system-ui, sans-serif;
+      --cond:  'Barlow Condensed', sans-serif;
+      --ease:  cubic-bezier(.25,.46,.45,.94);
+      --maxw:  1200px;
+      --sh:  0 2px 16px rgba(0,50,100,.08);
+      --sh2: 0 8px 40px rgba(0,50,100,.11);
+      --sh3: 0 24px 64px rgba(0,50,100,.13);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--body); font-size: 17px; color: var(--ink); background: var(--white); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; }
+    .wrap { width: min(var(--maxw), calc(100% - 40px)); margin: 0 auto; }
+
+    /* HEADER */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,.97); backdrop-filter: blur(14px) saturate(180%);
+      border-bottom: 1px solid var(--line); box-shadow: 0 1px 10px rgba(0,50,100,.07);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 74px; gap: 24px; }
+
+    /* ✅ UPDATED BRAND LOCKUP (ONLY CHANGE YOU ASKED FOR) */
+    .brand {
+      display: flex;
+      align-items: center;
+      height: 74px;            /* match header height */
+      flex: 0 0 auto;
+      padding-right: 14px;     /* slight breathing room vs nav links */
+    }
+    .brand img {
+      height: 44px;            /* cleaner proportion inside 74px header */
+      width: auto;
+      max-width: 260px;        /* prevents nav crowding */
+      object-fit: contain;
+      object-position: left center;
+
+      /* If your PNG has transparent padding, keep this.
+         If your logo is already tightly cropped, set to 0 or delete. */
+      transform: translateX(-8px);
+    }
+
+    .navlinks { display: flex; align-items: center; gap: 8px; }
+    .nl { font-family: var(--cond); font-size: 13px; font-weight: 600; letter-spacing: .11em; text-transform: uppercase; color: var(--muted); padding: 8px 12px; border-radius: 4px; background: transparent; border: none; cursor: pointer; transition: color .18s, background .18s; }
+    .nl:hover, .nl.active { color: var(--b5); background: var(--btint); }
+    .navlinks .nl[href^="#"] { position: relative; }
+    .navlinks .nl[href^="#"]::after {
+      content: "";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 5px;
+      height: 2px;
+      border-radius: 99px;
+      background: var(--b5);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform .18s ease;
+    }
+    .navlinks .nl[href^="#"].is-anchor-current::after { transform: scaleX(1); }
+    .nl-cta { font-family: var(--cond); font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--white); background: var(--b5); padding: 10px 22px; border-radius: 4px; border: none; cursor: pointer; margin-left: 6px; box-shadow: 0 2px 12px rgba(0,113,194,.28); transition: all .2s; }
+    .nl-cta:hover { background: var(--b4); box-shadow: 0 5px 20px rgba(0,113,194,.38); transform: translateY(-1px); }
+    .hamburger { display: none; background: transparent; border: 1px solid var(--line); border-radius: 4px; padding: 9px 14px; color: var(--muted); font-family: var(--cond); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; }
+    .mobile-nav { display: none; background: var(--white); border-top: 1px solid var(--line); padding: 8px 0 14px; box-shadow: 0 8px 24px rgba(0,50,100,.08); }
+    .mobile-nav.open { display: block; }
+    .mobile-nav a, .mobile-nav button { display: block; width: 100%; text-align: left; padding: 12px 24px; font-family: var(--cond); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); background: transparent; border: none; cursor: pointer; transition: all .15s; }
+    .mobile-nav a:hover, .mobile-nav button:hover { color: var(--b5); background: var(--btint); }
+    .mobile-nav a[href^="#"].is-anchor-current {
+      color: var(--b5);
+      background: var(--btint);
+      text-decoration: underline;
+      text-underline-offset: 5px;
+      text-decoration-thickness: 2px;
+    }
+
+    /* HERO */
+    .hero { padding: 110px 0 0; background: var(--white); position: relative; overflow: hidden; }
+    .hero-wash { position: absolute; top: 0; right: 0; bottom: 0; width: 45%; background: linear-gradient(160deg, var(--bg) 0%, #deeef9 50%, #cce4f5 100%); clip-path: polygon(16% 0, 100% 0, 100% 100%, 0% 100%); z-index: 0; }
+    .hero-wash::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("https://2pbqjgxycewduhvh.public.blob.vercel-storage.com/CORE%20PGA%20Images/Blueprint%20blades.png") center center / cover no-repeat;
+      opacity: .35;
+      filter: contrast(1.3) saturate(1.12) brightness(.95);
+      pointer-events: none;
+    }
+    .hero-wash::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(160deg, rgba(0,113,194,.34), rgba(0,161,230,.28)),
+        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(51,221,255,.18), transparent 70%);
+    }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 400px; gap: 64px; align-items: center; padding: 72px 0 80px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: var(--cond); font-size: 12px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: var(--b4); margin-bottom: 20px; opacity: 0; animation: fadeUp .6s .1s var(--ease) forwards; }
+    .eyebrow-bar { width: 28px; height: 2px; background: var(--b3); border-radius: 2px; }
+    .hero-h1 { font-family: var(--serif); font-size: clamp(40px, 4.8vw, 68px); font-weight: 700; line-height: 1.06; letter-spacing: -.01em; color: var(--ink); margin-bottom: 26px; opacity: 0; animation: fadeUp .75s .22s var(--ease) forwards; }
+    .hero-h1 em { font-style: italic; font-weight: 400; color: var(--b5); }
+    .hero-lead { font-size: 18px; font-weight: 400; line-height: 1.72; color: var(--muted); max-width: 52ch; margin-bottom: 38px; opacity: 0; animation: fadeUp .75s .34s var(--ease) forwards; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; animation: fadeUp .75s .46s var(--ease) forwards; }
+    .btn-primary { font-family: var(--cond); font-size: 14px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--white); background: var(--b5); padding: 15px 32px; border-radius: 4px; border: none; cursor: pointer; box-shadow: 0 4px 18px rgba(0,113,194,.30); transition: all .22s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary:hover { background: var(--b4); box-shadow: 0 8px 28px rgba(0,113,194,.40); transform: translateY(-2px); }
+    .btn-secondary { font-family: var(--cond); font-size: 14px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--b5); background: transparent; padding: 14px 28px; border-radius: 4px; border: 2px solid var(--b4); cursor: pointer; transition: all .22s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-secondary:hover { background: var(--btint); border-color: var(--b5); transform: translateY(-1px); }
+    .oem-strip { display: flex; align-items: center; margin-top: 48px; gap: 0; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--white); box-shadow: var(--sh); opacity: 0; animation: fadeUp .75s .58s var(--ease) forwards; }
+    .oem-label { font-family: var(--cond); font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--cap); padding: 13px 16px; background: var(--bg); border-right: 1px solid var(--line); white-space: nowrap; }
+    .oem-items { display: flex; flex: 1; }
+    .oem-item { font-family: var(--cond); font-size: 13px; font-weight: 600; letter-spacing: .08em; color: var(--ink2); padding: 13px 0; flex: 1; text-align: center; border-right: 1px solid var(--line); transition: color .18s, background .18s; }
+    .oem-item:last-child { border-right: none; }
+    .oem-item:hover { color: var(--b5); background: var(--btint); }
+
+    /* Hero card */
+    .hero-card { background: var(--white); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--sh3); overflow: hidden; opacity: 0; animation: fadeIn .8s .4s var(--ease) forwards; }
+    .hc-head { padding: 16px 22px; background: linear-gradient(135deg, var(--b5), var(--b4)); display: flex; align-items: center; justify-content: space-between; }
+    .hc-head-label { font-family: var(--cond); font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.85); }
+    .live-pill { display: flex; align-items: center; gap: 7px; font-family: var(--cond); font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #a8f5c8; background: rgba(0,0,0,.18); padding: 5px 10px; border-radius: 20px; }
+    .live-pill::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 8px #4ade80; animation: blink 2s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+    .hc-body { padding: 22px; }
+    .hc-body p { font-size: 15px; line-height: 1.72; color: var(--muted); margin-bottom: 18px; }
+    .cap-list { display: grid; gap: 8px; }
+    .cap-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border: 1px solid var(--line2); border-radius: 6px; background: var(--bg); transition: border-color .2s, box-shadow .2s; }
+    .cap-item:hover { border-color: rgba(0,139,209,.30); box-shadow: 0 2px 12px rgba(0,113,194,.08); }
+    .cap-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--b3); flex-shrink: 0; margin-top: 4px; }
+    .cap-item-text { font-size: 14px; line-height: 1.5; color: var(--ink2); }
+    .cap-item-text strong { color: var(--ink); font-weight: 600; }
+
+    /* SECTIONS */
+    section { padding: 96px 0; }
+    .section-bg { background: var(--bg); }
+    hr.divider { border: none; height: 1px; background: var(--line); }
+    .sec-eye { font-family: var(--cond); font-size: 12px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: var(--b4); display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .sec-eye::before { content: ''; width: 24px; height: 2px; background: var(--b3); border-radius: 2px; }
+    .sec-h2 { font-family: var(--serif); font-size: clamp(32px, 3.6vw, 50px); font-weight: 700; line-height: 1.1; letter-spacing: -.01em; color: var(--ink); margin-bottom: 14px; }
+    .sec-h2 em { font-style: italic; font-weight: 400; color: var(--b5); }
+    .sec-lead { font-size: 17px; line-height: 1.75; color: var(--muted); max-width: 58ch; }
+    .sec-head { margin-bottom: 52px; }
+    .sec-head-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+    .btn-ghost { font-family: var(--cond); font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--b5); background: transparent; padding: 10px 20px; border-radius: 4px; border: 1px solid var(--b4); cursor: pointer; transition: all .2s; white-space: nowrap; }
+    .btn-ghost:hover { background: var(--btint); border-color: var(--b5); }
+
+    /* Reveal */
+    .r  { opacity:0; transform:translateY(18px); transition: opacity .65s var(--ease), transform .65s var(--ease); }
+    .r2 { opacity:0; transform:translateY(18px); transition: opacity .65s .12s var(--ease), transform .65s .12s var(--ease); }
+    .r3 { opacity:0; transform:translateY(18px); transition: opacity .65s .24s var(--ease), transform .65s .24s var(--ease); }
+    .r4 { opacity:0; transform:translateY(18px); transition: opacity .65s .36s var(--ease), transform .65s .36s var(--ease); }
+    .r.vis,.r2.vis,.r3.vis,.r4.vis { opacity:1; transform:none; }
+
+    /* STATS BAR */
+    .stats-bar { background: var(--b5); }
+    .stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .stat-block { padding: 30px 28px; border-right: 1px solid rgba(255,255,255,.15); transition: background .18s; }
+    .stat-block:last-child { border-right: none; }
+    .stat-block:hover { background: rgba(255,255,255,.07); }
+    .stat-num { font-family: var(--serif); font-size: 36px; font-weight: 700; color: var(--white); line-height: 1; }
+    .stat-num span { font-size: 20px; font-weight: 400; }
+    .stat-desc { font-family: var(--cond); font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.65); margin-top: 6px; }
+
+    /* EXPERTISE */
+    .exp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .exp-card { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 32px 28px; box-shadow: var(--sh); position: relative; overflow: hidden; transition: transform .22s var(--ease), box-shadow .22s; }
+    .exp-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--b3), var(--b5)); }
+    .exp-card:hover { transform: translateY(-5px); box-shadow: var(--sh3); }
+    .exp-num { font-family: var(--cond); font-size: 12px; font-weight: 700; letter-spacing: .20em; color: var(--b3); margin-bottom: 16px; }
+    .exp-card h4 { font-family: var(--serif); font-size: 21px; font-weight: 700; line-height: 1.2; color: var(--ink); margin-bottom: 14px; }
+    .exp-card p { font-size: 15px; line-height: 1.75; color: var(--muted); margin-bottom: 22px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { font-family: var(--cond); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--b5); padding: 5px 10px; border-radius: 3px; background: var(--btint); border: 1px solid rgba(0,113,194,.18); }
+
+    /* SERVICES */
+    .services-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .svc-card { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 36px 32px; box-shadow: var(--sh); overflow: hidden; position: relative; transition: box-shadow .22s, transform .22s var(--ease); }
+    .svc-card:hover { transform: translateY(-4px); box-shadow: var(--sh2); }
+    .svc-card::after { content: ''; position: absolute; bottom: -40px; right: -40px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, var(--btint2), transparent 70%); pointer-events: none; }
+    .svc-icon { width: 48px; height: 48px; border-radius: 8px; background: linear-gradient(135deg, var(--b3), var(--b5)); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 4px 14px rgba(0,113,194,.25); }
+    .svc-icon svg { width: 24px; height: 24px; }
+    .svc-card h4 { font-family: var(--serif); font-size: 26px; font-weight: 700; line-height: 1.1; color: var(--ink); margin-bottom: 14px; }
+    .svc-card > p { font-size: 15px; line-height: 1.75; color: var(--muted); margin-bottom: 16px; }
+    .tech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 8px; }
+    .tech-item { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; color: var(--ink2); padding: 9px 0; border-bottom: 1px solid var(--line2); }
+    .tech-item::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--b3); flex-shrink: 0; }
+
+    /* TRUST */
+    .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .trust-card { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 28px 24px; box-shadow: var(--sh); transition: transform .22s var(--ease), box-shadow .22s; }
+    .trust-card:hover { transform: translateY(-5px); box-shadow: var(--sh2); }
+    .trust-icon-wrap { width: 52px; height: 52px; border-radius: 10px; background: linear-gradient(135deg, var(--btint2) 0%, var(--btint) 100%); border: 1px solid rgba(0,161,230,.20); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+    .trust-icon-wrap svg { width: 24px; height: 24px; }
+    .trust-card h5 { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 10px; line-height: 1.2; }
+    .trust-card p { font-size: 14.5px; line-height: 1.7; color: var(--muted); }
+
+    /* CTA BAND */
+    .cta-band { background: linear-gradient(135deg, var(--rich-black) 0%, var(--b5) 60%, var(--b3) 100%); padding: 72px 0; position: relative; overflow: hidden; }
+    .cta-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 100% at 80% 50%, rgba(51,221,255,.15), transparent 60%); }
+    .cta-inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+    .cta-text h2 { font-family: var(--serif); font-size: clamp(28px, 3vw, 42px); font-weight: 700; color: var(--white); line-height: 1.1; margin-bottom: 10px; }
+    .cta-text p { font-size: 17px; color: rgba(255,255,255,.75); max-width: 48ch; }
+    .btn-white { font-family: var(--cond); font-size: 14px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--b5); background: var(--white); padding: 15px 34px; border-radius: 4px; border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,.18); transition: all .2s; white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,.24); }
+
+    /* CONTACT */
+    .contact-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 56px; align-items: start; }
+    .contact-left h3 { font-family: var(--serif); font-size: clamp(28px, 3vw, 44px); font-weight: 700; line-height: 1.1; color: var(--ink); margin-bottom: 18px; }
+    .contact-left > p { font-size: 16px; line-height: 1.75; color: var(--muted); margin-bottom: 36px; }
+    .cd-item { display: flex; align-items: flex-start; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--line2); }
+    .cd-icon { width: 38px; height: 38px; flex-shrink: 0; border-radius: 8px; background: var(--btint); border: 1px solid rgba(0,139,209,.20); display: flex; align-items: center; justify-content: center; }
+    .cd-icon svg { width: 18px; height: 18px; }
+    .cd-label { font-size: 12px; font-weight: 700; color: var(--muted2); margin-bottom: 2px; font-family: var(--cond); letter-spacing: .1em; text-transform: uppercase; }
+    .cd-val { font-size: 15px; font-weight: 500; color: var(--ink2); }
+    .contact-form { background: var(--white); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; box-shadow: var(--sh2); }
+    .form-head { padding: 18px 26px; background: var(--bg); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 10px; }
+    .form-head-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--b3); }
+    .form-head-label { font-family: var(--cond); font-size: 11px; font-weight: 700; letter-spacing: .20em; text-transform: uppercase; color: var(--muted); }
+    .form-body { padding: 28px; }
+    form { display: grid; gap: 16px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: flex; flex-direction: column; }
+    label { font-family: var(--cond); font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
+    input, textarea { width: 100%; padding: 12px 14px; background: var(--white); border: 1px solid var(--line); border-radius: 5px; color: var(--ink); font-family: var(--body); font-size: 15px; outline: none; transition: border-color .2s, box-shadow .2s; }
+    input::placeholder, textarea::placeholder { color: var(--cap); }
+    input:focus, textarea:focus { border-color: var(--b3); box-shadow: 0 0 0 3px rgba(0,161,230,.12); }
+    textarea { min-height: 130px; resize: vertical; }
+    .form-actions { display: flex; gap: 12px; flex-wrap: wrap; padding-top: 4px; }
+    .honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }
+
+    /* FOOTER */
+    footer { background: var(--ink); padding: 48px 0 36px; }
+    .foot { display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    .foot-logo img { height: 44px; width: auto; margin-bottom: 14px; }
+    .foot-tagline { font-family: var(--cond); font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.40); }
+    .foot-links { display: flex; gap: 40px; flex-wrap: wrap; }
+    .foot-col h6 { font-family: var(--cond); font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: 14px; }
+    .foot-col a, .foot-col button { display: block; font-size: 14px; color: rgba(255,255,255,.65); margin-bottom: 9px; background: transparent; border: none; cursor: pointer; text-align: left; padding: 0; font-family: var(--body); transition: color .15s; }
+    .foot-col a:hover, .foot-col button:hover { color: var(--b1); }
+    .foot-bottom { margin-top: 36px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.10); font-size: 13px; color: rgba(255,255,255,.35); font-family: var(--cond); letter-spacing: .08em; }
+
+    /* MODAL */
+    .modal-bg { position: fixed; inset: 0; z-index: 500; background: rgba(0,6,8,.55); backdrop-filter: blur(8px); display: none; place-items: center; padding: 20px; }
+    .modal-bg.open { display: grid; }
+    .modal-box { width: min(500px, 100%); background: var(--white); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; box-shadow: var(--sh3); animation: scaleUp .2s var(--ease); }
+    @keyframes scaleUp { from{transform:scale(.94);opacity:0} to{transform:scale(1);opacity:1} }
+    .modal-head { padding: 16px 22px; background: linear-gradient(135deg, var(--b5), var(--b4)); display: flex; align-items: center; justify-content: space-between; }
+    .modal-head h6 { font-family: var(--cond); font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--white); }
+    .modal-x { width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.25); border-radius: 4px; background: transparent; color: rgba(255,255,255,.8); font-size: 14px; cursor: pointer; transition: all .15s; }
+    .modal-x:hover { background: rgba(255,255,255,.15); color: var(--white); }
+    .modal-body { padding: 24px 22px; font-size: 16px; line-height: 1.7; color: var(--ink2); }
+    .modal-foot { padding: 0 22px 22px; }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+    @media(max-width:1000px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; padding: 64px 0; }
+      .hero-wash { width: 100%; clip-path: none; top: auto; height: 300px; bottom: 0; opacity: .35; }
+      .hero-wash::before { inset: 0; opacity: .35; background-position: center; }
+      .exp-grid { grid-template-columns: 1fr; }
+      .services-layout { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: 1fr 1fr; }
+      .contact-layout { grid-template-columns: 1fr; }
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+      .stat-block:nth-child(2) { border-right: none; }
+      .navlinks { display: none; }
+      .hamburger { display: block; }
+      .cta-inner { flex-direction: column; text-align: center; }
+    }
+    @media(max-width:600px) {
+      section { padding: 64px 0; }
+      .hero-wash::before { inset: 0; opacity: .35; }
+      .trust-grid { grid-template-columns: 1fr; }
+      .row2 { grid-template-columns: 1fr; }
+      .sec-head-row { flex-direction: column; align-items: flex-start; }
+      .tech-grid { grid-template-columns: 1fr; }
+      .oem-items { display: none; }
+      .foot-links { flex-direction: column; gap: 24px; }
+
+      /* ✅ Mobile logo sizing (still only logo behavior) */
+      .brand img { height: 40px; max-width: 210px; transform: translateX(-6px); }
+    }
+  </style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap">
+    <div class="nav">
+      <a class="brand" href="#home" aria-label="Core Power Generation Advisors">
+        <img src="https://2pbqjgxycewduhvh.public.blob.vercel-storage.com/CORE%20Whole%20Logo%20Transparent%20Black%20Text%20edit.png" alt="Core Power Generation Advisors" height="52" />
+      </a>
+      <nav class="navlinks" aria-label="Primary">
+        <a class="nl active" href="#home">Home</a>
+        <a class="nl" href="#expertise">Expertise</a>
+        <a class="nl" href="#services">Services</a>
+        <a class="nl" href="#trust">Why Core</a>
+        <a class="nl" href="about.html">About</a>
+        <a class="nl" href="projects.html">Projects</a>
+        <a class="nl-cta" href="contact.html">Contact Us</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">Menu</button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mnav">
+    <a href="#home" onclick="closeMNav()">Home</a>
+    <a href="#expertise" onclick="closeMNav()">Expertise</a>
+    <a href="#services" onclick="closeMNav()">Services</a>
+    <a href="#trust" onclick="closeMNav()">Why Core</a>
+    <a href="about.html" onclick="closeMNav()">About</a>
+    <a href="projects.html" onclick="closeMNav()">Projects</a>
+    <a href="contact.html" onclick="closeMNav()">Contact Us</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-wash" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow"><span class="eyebrow-bar"></span>At Core: Partnering for Perfect Project Execution</div>
+        <h1 class="hero-h1">Industry-leading expertise<br>across the <em>full lifecycle</em><br>of power generation.</h1>
+        <p class="hero-lead">Trusted Expertise for High-Stakes Power Generation Projects</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="contact.html">Secure Project Oversight →</a>
+          <a class="btn-secondary" href="#expertise">Our Expertise</a>
+        </div>
+        <div class="oem-strip">
+          <div class="oem-label">OEM Experience</div>
+          <div class="oem-items">
+            <div class="oem-item">GE</div>
+            <div class="oem-item">Siemens</div>
+            <div class="oem-item">Toshiba</div>
+            <div class="oem-item">Mitsubishi</div>
+          </div>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="Capability summary">
+        <div class="hc-head">
+          <span class="hc-head-label">Operational Advantage</span>
+        </div>
+<div class="hc-body">
+  <p>Built for environments where performance is measured by technical precision, disciplined execution, and measurable results.</p>
+  <div class="cap-list">
+    
+    <div class="cap-item">
+      <div class="cap-dot"></div>
+      <div class="cap-item-text">
+        <strong>Elite Specialists</strong> — Top-tier technical specialists.
+      </div>
+    </div>
+
+    <div class="cap-item">
+      <div class="cap-dot"></div>
+      <div class="cap-item-text">
+        <strong>Efficient Restoration</strong> — Compressed outage timelines.
+      </div>
+    </div>
+
+    <div class="cap-item">
+      <div class="cap-dot"></div>
+      <div class="cap-item-text">
+        <strong>Disciplined Expertise</strong> — A process-driven execution model.
+      </div>
+    </div>
+
+    <div class="cap-item">
+      <div class="cap-dot"></div>
+      <div class="cap-item-text">
+        <strong>Relentless Results</strong> — Total cost reduction and commercial risk mitigation.
+      </div>
+    </div>
+
+  </div>
+</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="wrap">
+    <div class="stats-inner">
+      <div class="stat-block r"><div class="stat-num">4<span>+</span></div><div class="stat-desc">Major OEM Platforms</div></div>
+      <div class="stat-block r2"><div class="stat-num">3</div><div class="stat-desc">Core Disciplines — M · E · C</div></div>
+      <div class="stat-block r3"><div class="stat-num">0</div><div class="stat-desc">Compromise on Quality</div></div>
+      <div class="stat-block r4"><div class="stat-num">∞</div><div class="stat-desc">Commitment to Client Outcomes</div></div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- EXPERTISE -->
+<section id="expertise" class="section-bg">
+  <div class="wrap">
+    <div class="sec-head sec-head-row">
+      <div>
+        <div class="sec-eye r">Core Expertise</div>
+        <h2 class="sec-h2 r2">For high-stakes power<br>generation projects.</h2>
+        <p class="sec-lead r3">Technical depth across OEMs and technologies—from major restoration to owner-side oversight and commissioning.</p>
+      </div>
+    </div>
+    <div class="exp-grid">
+      <article class="exp-card r">
+        <div class="exp-num">01</div>
+        <h4>Major Equipment Restoration</h4>
+        <p>Leading management of restoration efforts for major utility power generation facilities as part of long-term asset reliability and life-extension initiatives. Directing accelerated recovery of severely damaged generating units through disciplined execution and risk-based decision-making, including full replacement and commissioning of medium-voltage distribution, cabling, and protection and control systems following major storm events.</p>
+        <div class="tags"><span class="tag">Return-to-Service</span><span class="tag">Risk-Based Decisions</span><span class="tag">Reliability</span><span class="tag">Life Extension</span><span class="tag">Storm Recovery</span></div>
+      </article>
+      <article class="exp-card r2">
+        <div class="exp-num">02</div>
+        <h4>Customer Engineer Representation &amp; Oversight</h4>
+        <p>Serving as Owner's Engineer, prioritizing safety in all aspects of project execution while safeguarding asset owners from unnecessary cost exposure and commercial risk. Providing independent oversight of equipment suppliers and service providers to ensure adherence to contractual scope, quality standards, and the highest safety expectations. Identifying and mitigating safety, technical, schedule, and cost risks throughout project execution.</p>
+        <div class="tags"><span class="tag">Owner's Engineer</span><span class="tag">Commercial Risk</span><span class="tag">Contract Compliance</span><span class="tag">Quality Governance</span></div>
+      </article>
+      <article class="exp-card r3">
+        <div class="exp-num">03</div>
+        <h4>Construction, Maintenance &amp; Commissioning</h4>
+        <p>Extensive participation in new construction, major maintenance, and major restoration of power generation facilities. Supplying commissioning specialists and QA inspectors to validate post-construction and post-maintenance work. Supporting complex outage planning, execution, and verification across all major technologies.</p>
+        <div class="tags"><span class="tag">Commissioning</span><span class="tag">QA / QC</span><span class="tag">Outage Planning</span><span class="tag">Verification</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eye r">Core Services</div>
+      <h2 class="sec-h2 r2">Core performance that<br>sets us apart.</h2>
+      <p class="sec-lead r3">Although Core PGA is a newly established company, the experience behind the brand is anything but new, their team has an in-depth understanding and hands-on engineering experience across diverse power generation technologies.</p>
+    </div>
+    <div class="services-layout">
+      <div class="svc-card r">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <h4>What Truly Sets Core PGA Apart</h4>
+        <p>Our ability to integrate technical expertise with operational efficiency and disciplined execution. We respond to the scope and demands of power generation industrial work with structured processes, premier programs, and a strong commitment to safety and organized project delivery.</p>
+        <p>Supported by Project Managers, Technical Advisors, Engineering Support, Owner's Representatives, and dedicated administrative staff—each equipped with project-specific knowledge to tailor solutions for every customer, operation, and equipment type.</p>
+        <div class="tags"><span class="tag">Structured Processes</span><span class="tag">Premier Programs</span><span class="tag">Safety Commitment</span><span class="tag">Clear Communication</span></div>
+      </div>
+      <div class="svc-card r2">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M21 12h-2M5 12H3M19.07 19.07l-1.41-1.41M5.34 5.34l-1.41-1.41M12 21v-2M12 5V3"/></svg>
+        </div>
+        <h4>Technology Coverage</h4>
+        <p>Trusted oversight and support across steam turbines, combined cycle turbines, and component repair projects—delivering professionalism measured by results.</p>
+        <div class="tech-grid">
+          <div class="tech-item">Steam turbines</div><div class="tech-item">Combustion turbines</div>
+          <div class="tech-item">Combined cycle</div><div class="tech-item">Balance-of-plant</div>
+          <div class="tech-item">Auxiliary equipment</div><div class="tech-item">Component repair</div>
+          <div class="tech-item">Substation construction</div><div class="tech-item">Protection &amp; control</div>
+          <div class="tech-item">Power plant electrical</div><div class="tech-item">Medium-voltage dist.</div>
+          <div class="tech-item">Control relay install</div><div class="tech-item">GE · Siemens · Toshiba · Mitsubishi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TRUST -->
+<section id="trust" class="section-bg">
+  <div class="wrap">
+    <div class="sec-head sec-head-row">
+      <div>
+        <div class="sec-eye r">Why Customers Choose Core PGA</div>
+        <h2 class="sec-h2 r2">Core <em>Trust.</em></h2>
+        <p class="sec-lead r3">Core PGA provides trusted oversight and support, delivering professionalism measured by results.</p>
+      </div>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card r">
+        <div class="trust-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#0071c2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3"/><circle cx="4" cy="17" r="2.5"/><circle cx="20" cy="17" r="2.5"/><line x1="10" y1="10.5" x2="5.5" y2="15"/><line x1="14" y1="10.5" x2="18.5" y2="15"/><line x1="7" y1="17" x2="17" y2="17"/></svg></div>
+        <h5>Elite Specialists</h5>
+        <p>A network of top-tier specialists across all major power generation disciplines, curated for high-stakes engagements that demand precision and proven experience.</p>
+      </div>
+      <div class="trust-card r2">
+        <div class="trust-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#0071c2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="2" fill="#0071c2" stroke="none"/></svg></div>
+        <h5>Relentless Results</h5>
+        <p>Customer-centered focus to reduce total cost and protect client interests by minimizing budget, schedule, and execution risk across every engagement.</p>
+      </div>
+      <div class="trust-card r3">
+        <div class="trust-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#0071c2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12,6 12,12 16,14"/></svg></div>
+        <h5>Efficient Restoration</h5>
+        <p>Proven ability to compress restoration and outage schedules and return units to service safely and efficiently—with full verification and commissioning support.</p>
+      </div>
+      <div class="trust-card r4">
+        <div class="trust-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#0071c2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 6v6c0 5.5 3.8 9.7 9 11 5.2-1.3 9-5.5 9-11V6L12 2z"/><polyline points="8,12 11,15 16,9"/></svg></div>
+        <h5>Disciplined Expertise</h5>
+        <p>Deep technical expertise combined with a disciplined, process-driven approach to execution and risk management throughout every project phase.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="wrap">
+    <div class="cta-inner r">
+      <div class="cta-text">
+        <h2>Ready to protect your project?</h2>
+        <p>Let's discuss how Core PGA can provide the oversight, expertise, and execution your next project demands.</p>
+      </div>
+      <a class="btn-white" href="contact.html">Secure Project Oversight →</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-layout">
+      <div class="contact-left">
+        <div class="sec-eye r">Get in Touch</div>
+        <h3 class="r2">Let's discuss your<br>next project.</h3>
+        <p class="r3">Whether you need owner-side oversight, restoration leadership, or commissioning specialists—Core PGA is ready to protect and advance your interests.</p>
+        <div class="r">
+          <div class="cd-item"><div class="cd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#008bd1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="cd-label">Email</div><div class="cd-val">contact@corepga.com</div></div></div>
+          <div class="cd-item"><div class="cd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#008bd1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="21"/><line x1="3" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="21" y2="12"/></svg></div><div><div class="cd-label">Focus Areas</div><div class="cd-val">Power Generation · Owner's Engineering · Commissioning</div></div></div>
+          <div class="cd-item"><div class="cd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#008bd1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><polyline points="16,7 12,3 8,7"/></svg></div><div><div class="cd-label">OEM Experience</div><div class="cd-val">GE · Siemens · Toshiba · Mitsubishi</div></div></div>
+          <div class="cd-item"><div class="cd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#008bd1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12,6 12,12 16,14"/></svg></div><div><div class="cd-label">Response Time</div><div class="cd-val">All inquiries reviewed within one business day</div></div></div>
+        </div>
+      </div>
+      <div class="contact-form r2">
+        <div class="form-head"><div class="form-head-dot"></div><div class="form-head-label">Capability Review Request</div></div>
+        <div class="form-body">
+          <form id="contactForm" action="https://formspree.io/f/mvzlydyb" method="POST">
+            <input type="hidden" name="_subject" value="Core PGA — website inquiry (home)" />
+            <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <div class="row2">
+              <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" placeholder="Your name" autocomplete="name" required /></div>
+              <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" placeholder="your@email.com" autocomplete="email" required /></div>
+            </div>
+            <div class="field"><label for="f-co">Company / Facility</label><input id="f-co" name="company" type="text" placeholder="Organization name" autocomplete="organization" /></div>
+            <div class="field"><label for="f-msg">Project Overview</label><textarea id="f-msg" name="message" placeholder="Describe your project, challenge, or area of support needed…" required></textarea></div>
+            <div class="form-actions">
+              <button class="btn-primary" type="submit">Send Message →</button>
+              <button class="btn-secondary" type="button" id="copyEmail">Copy Email</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="foot-logo">
+        <img src="https://2pbqjgxycewduhvh.public.blob.vercel-storage.com/CORE%20Whole%20Logo%20Transparent%20White%20Text%20edit.png" alt="Core Power Generation Advisors" />
+        <div class="foot-tagline">At Core: Partnering for Perfect Project Execution</div>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h6>Services</h6>
+          <a href="#expertise">Major Equipment Restoration</a>
+          <a href="#expertise">Owner's Engineer Oversight</a>
+          <a href="#expertise">Construction &amp; Commissioning</a>
+        </div>
+        <div class="foot-col">
+          <h6>Company</h6>
+          <a href="about.html">About Core PGA</a>
+          <a href="projects.html">Projects</a>
+          <a href="#trust">Why Core</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="foot-col">
+          <h6>Technologies</h6>
+          <a href="#services">Steam Turbines</a>
+          <a href="#services">Combustion Turbines</a>
+          <a href="#services">Protection &amp; Controls</a>
+          <a href="#services">Balance-of-Plant</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">© <span id="yr"></span> Core Power Generation Advisors, INC. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <div class="modal-head"><h6 id="modal-title">Coming Soon</h6><button class="modal-x" id="modal-x" aria-label="Close">✕</button></div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-foot"><button class="btn-primary" id="modal-ok" type="button">Got it →</button></div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const burger = document.getElementById('hamburger');
+  const mnav = document.getElementById('mnav');
+  burger?.addEventListener('click', () => mnav.classList.toggle('open'));
+  function closeMNav() { mnav.classList.remove('open'); }
+
+  const desktopAnchorLinks = Array.from(document.querySelectorAll('.navlinks .nl[href^="#"]'));
+  const mobileAnchorLinks = Array.from(document.querySelectorAll('.mobile-nav a[href^="#"]'));
+  const allAnchorLinks = [...desktopAnchorLinks, ...mobileAnchorLinks];
+  const anchorSections = desktopAnchorLinks
+    .map((link) => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  const setCurrentAnchor = (targetId) => {
+    const targetHash = '#' + targetId;
+    allAnchorLinks.forEach((link) => {
+      const isCurrent = link.getAttribute('href') === targetHash;
+      link.classList.toggle('is-anchor-current', isCurrent);
+      if (isCurrent) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  };
+
+  const updateAnchorFromScroll = () => {
+    if (!anchorSections.length) return;
+    const y = window.scrollY + 120;
+    let currentId = anchorSections[0].id;
+    anchorSections.forEach((section) => {
+      if (y >= section.offsetTop) currentId = section.id;
+    });
+    setCurrentAnchor(currentId);
+  };
+
+  allAnchorLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      const href = link.getAttribute('href') || '';
+      if (href.startsWith('#') && href.length > 1) {
+        setCurrentAnchor(href.slice(1));
+      }
+    });
+  });
+
+  window.addEventListener('scroll', updateAnchorFromScroll, { passive: true });
+  window.addEventListener('hashchange', updateAnchorFromScroll);
+  updateAnchorFromScroll();
+
+  const modal = document.getElementById('modal');
+  const mBody = document.getElementById('modal-body');
+  const mTitle = document.getElementById('modal-title');
+  function openModal(title, body) {
+    mTitle.textContent = title;
+    mBody.textContent = body || 'This is a homepage-only delivery. The "' + title.replace(' — Coming Soon','') + '" page will be built and linked in the complete site package.';
+    modal.classList.add('open');
+  }
+  function closeModal() { modal.classList.remove('open'); }
+  document.querySelectorAll('[data-modal]').forEach(el => el.addEventListener('click', () => openModal(el.dataset.modal + ' — Coming Soon')));
+  document.getElementById('modal-x')?.addEventListener('click', closeModal);
+  document.getElementById('modal-ok')?.addEventListener('click', closeModal);
+  modal?.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  document.querySelectorAll('form[action*="formspree.io"]').forEach((form) => {
+    let next = form.querySelector('input[name="_next"]');
+    if (!next) {
+      next = document.createElement('input');
+      next.type = 'hidden';
+      next.name = '_next';
+      form.prepend(next);
+    }
+    next.value = new URL('thanks.html', window.location.href).href;
+  });
+
+  document.getElementById('copyEmail')?.addEventListener('click', async () => {
+    const email = 'contact@corepga.com';
+    try { await navigator.clipboard.writeText(email); openModal('Email Copied', email + ' has been copied to your clipboard.'); }
+    catch { openModal('Email Address', 'Please copy manually: ' + email); }
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('vis'); obs.unobserve(entry.target); } });
+  }, { threshold: 0.10 });
+  document.querySelectorAll('.r, .r2, .r3, .r4').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
