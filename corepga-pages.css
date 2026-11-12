@@ -68,7 +68,7 @@ a { color: inherit; text-decoration: none; }
   transform: translateX(-8px);
 }
 
-.navlinks { display: flex; align-items: center; gap: 8px; }
+.navlinks { display: flex; align-items: center; gap: 6px; }
 .nl {
   font-family: var(--cond);
   font-size: 13px;
@@ -131,6 +131,11 @@ a { color: inherit; text-decoration: none; }
   color: var(--muted);
 }
 .mobile-nav a:hover { color: var(--b5); background: var(--btint); }
+
+@media (max-width: 1180px) {
+  .navlinks { display: none; }
+  .hamburger { display: block; }
+}
 
 main { padding-top: 110px; }
 
@@ -702,8 +707,6 @@ textarea { min-height: 130px; resize: vertical; }
   .grid-2 { grid-template-columns: 1fr; }
   .stat-grid { grid-template-columns: 1fr 1fr; }
   .stat:nth-child(2) { border-right: none; }
-  .navlinks { display: none; }
-  .hamburger { display: block; }
 }
 
 @media (max-width: 680px) {
@@ -722,4 +725,133 @@ textarea { min-height: 130px; resize: vertical; }
   .stat:last-child { border-bottom: none; }
   .foot-links { flex-direction: column; gap: 22px; }
   .brand img { height: 40px; max-width: 210px; transform: translateX(-6px); }
+}
+
+/* Presentation */
+.presentation-player-wrap {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--ink);
+  box-shadow: var(--sh2);
+}
+.presentation-player-wrap video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 72vh;
+  background: var(--ink);
+}
+.presentation-soon {
+  text-align: center;
+  padding: 48px 28px;
+  background: linear-gradient(145deg, #ffffff 0%, #f4f9ff 100%);
+  border-color: rgba(0, 113, 194, 0.18);
+}
+.presentation-soon h2 { margin-bottom: 8px; }
+.presentation-soon .lead { margin-left: auto; margin-right: auto; }
+.presentation-soon code,
+.specialist-edit-note code {
+  font-size: 0.92em;
+  color: var(--b5);
+}
+.presentation-cta { justify-content: center; margin-top: 28px; }
+.presentation-qr-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 22px;
+  align-items: center;
+}
+.presentation-url {
+  font-family: var(--cond);
+  letter-spacing: 0.04em;
+  color: var(--ink2);
+  word-break: break-all;
+}
+.presentation-qr-card {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, #ffffff 0%, #f4f9ff 100%);
+}
+.presentation-qr {
+  width: min(280px, 100%);
+  padding: 12px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+/* Team / specialist cards */
+.specialist-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+.specialist-card {
+  display: grid;
+  gap: 4px;
+  border-color: rgba(0, 113, 194, 0.16);
+}
+.specialist-card h3 { margin-bottom: 4px; font-size: 26px; }
+.specialist-title {
+  margin: 0 0 4px;
+  font-family: var(--cond);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--b5);
+}
+.specialist-org { margin: 0 0 12px; color: var(--ink2); }
+.specialist-meta {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: grid;
+  gap: 6px;
+}
+.specialist-meta li {
+  color: var(--ink2);
+  font-size: 15px;
+}
+.specialist-meta span {
+  display: inline-block;
+  min-width: 58px;
+  font-family: var(--cond);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted2);
+}
+.specialist-meta a { color: var(--b5); }
+.specialist-qr {
+  width: min(220px, 100%);
+  margin: 8px auto 0;
+  padding: 10px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.specialist-qr-caption {
+  margin: 10px 0 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+}
+.missing-field { color: #9a4b16; font-style: italic; }
+.specialist-edit-note { margin-top: 28px; }
+
+@media (max-width: 1000px) {
+  .presentation-qr-layout,
+  .specialist-grid { grid-template-columns: 1fr; }
+}
+
+@media print {
+  .site-header,
+  .site-footer,
+  .no-print,
+  .hamburger,
+  .mobile-nav { display: none !important; }
+  main { padding-top: 0; }
+  .presentation-qr-section { border: none; background: var(--white); }
+  .presentation-qr { width: 320px; }
 }

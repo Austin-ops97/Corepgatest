@@ -272,6 +272,10 @@
     @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
     @keyframes fadeIn { from{opacity:0} to{opacity:1} }
 
+    @media(max-width:1180px) {
+      .navlinks { display: none; }
+      .hamburger { display: block; }
+    }
     @media(max-width:1000px) {
       .hero-grid { grid-template-columns: 1fr; gap: 40px; padding: 64px 0; }
       .hero-wash { width: 100%; clip-path: none; top: auto; height: 300px; bottom: 0; opacity: .35; }
@@ -315,6 +319,8 @@
         <a class="nl" href="#services">Services</a>
         <a class="nl" href="#trust">Why Core</a>
         <a class="nl" href="about.html">About</a>
+        <a class="nl" href="presentation.html">Presentation</a>
+        <a class="nl" href="team.html">Team</a>
         <a class="nl" href="projects.html">Projects</a>
         <a class="nl-cta" href="contact.html">Contact Us</a>
       </nav>
@@ -327,6 +333,8 @@
     <a href="#services" onclick="closeMNav()">Services</a>
     <a href="#trust" onclick="closeMNav()">Why Core</a>
     <a href="about.html" onclick="closeMNav()">About</a>
+    <a href="presentation.html" onclick="closeMNav()">Presentation</a>
+    <a href="team.html" onclick="closeMNav()">Team</a>
     <a href="projects.html" onclick="closeMNav()">Projects</a>
     <a href="contact.html" onclick="closeMNav()">Contact Us</a>
   </div>
@@ -591,6 +599,8 @@
         <div class="foot-col">
           <h6>Company</h6>
           <a href="about.html">About Core PGA</a>
+          <a href="presentation.html">Presentation</a>
+          <a href="team.html">Team</a>
           <a href="projects.html">Projects</a>
           <a href="#trust">Why Core</a>
           <a href="contact.html">Contact</a>
