@@ -1,5 +1,5 @@
-import { supabase } from '../js/supabase-client.js';
-import { DEFAULT_ACCENT, LOGO_DARK, LOGO_LIGHT } from '../js/config.js';
+import { supabase } from '/js/supabase-client.js';
+import { DEFAULT_ACCENT, LOGO_DARK, LOGO_LIGHT } from '/js/config.js';
 import {
   copyText,
   displayLogo,
@@ -9,7 +9,7 @@ import {
   publicCardUrl,
   renderQr,
   shareUrl
-} from '../js/card-utils.js';
+} from '/js/card-utils.js';
 
 const token = parsePathToken('me');
 const status = document.getElementById('status');

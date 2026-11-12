@@ -1,12 +1,12 @@
-import { supabase } from '../js/supabase-client.js';
-import { mountCard } from '../js/card-render.js';
+import { supabase } from '/js/supabase-client.js';
+import { mountCard } from '/js/card-render.js';
 import {
   downloadVCard,
   normalizeCard,
   parsePathToken,
   publicCardUrl,
   shareUrl
-} from '../js/card-utils.js';
+} from '/js/card-utils.js';
 
 const slug = parsePathToken('c');
 const status = document.getElementById('status');

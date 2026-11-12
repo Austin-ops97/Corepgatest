@@ -1,7 +1,9 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/c/:slug", "destination": "/c/index.html" },
-    { "source": "/me/:token", "destination": "/me/index.html" }
+    { "source": "/c/:slug", "destination": "/c" },
+    { "source": "/c/:slug/", "destination": "/c" },
+    { "source": "/me/:token", "destination": "/me" },
+    { "source": "/me/:token/", "destination": "/me" }
   ]
 }
