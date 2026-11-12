@@ -20,6 +20,13 @@ export const BRAND_LOGO = '/assets/corepga-logo.png';
 export const BRAND_LOGO_ON_DARK = '/assets/corepga-logo-white.png';
 export const BRAND_LOGO_WIDTH = 180;
 export const BRAND_LOGO_HEIGHT = 36;
+
+/** Versioned Home Screen icons (mark only, no wordmark). */
+export const APP_ICON_180 = '/assets/icons/corepga-mark-180-v1.png';
+export const APP_ICON_192 = '/assets/icons/corepga-mark-192-v1.png';
+export const APP_ICON_512 = '/assets/icons/corepga-mark-512-v1.png';
+export const APP_ICON_512_MASKABLE = '/assets/icons/corepga-mark-512-maskable-v1.png';
+export const APP_ICON_32 = '/assets/icons/corepga-mark-32-v1.png';
 export const LOGO_DARK = BRAND_LOGO;
 export const LOGO_LIGHT = BRAND_LOGO_ON_DARK;
 

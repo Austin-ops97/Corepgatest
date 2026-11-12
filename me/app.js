@@ -1,5 +1,13 @@
 import { supabase } from '/js/supabase-client.js';
-import { BRAND_LOGO, BRAND_LOGO_ON_DARK, DEFAULT_ACCENT } from '/js/config.js';
+import {
+  APP_ICON_180,
+  APP_ICON_192,
+  APP_ICON_512,
+  APP_ICON_512_MASKABLE,
+  BRAND_LOGO,
+  BRAND_LOGO_ON_DARK,
+  DEFAULT_ACCENT
+} from '/js/config.js';
 import {
   copyText,
   downloadVCard,
@@ -30,12 +38,9 @@ function installManifest(card, startUrl) {
     background_color: '#f3f7fc',
     theme_color: card.theme?.accent || DEFAULT_ACCENT,
     icons: [
-      {
-        src: card.photo_url || BRAND_LOGO,
-        sizes: '192x192',
-        type: 'image/png',
-        purpose: 'any'
-      }
+      { src: APP_ICON_192, sizes: '192x192', type: 'image/png', purpose: 'any' },
+      { src: APP_ICON_512, sizes: '512x512', type: 'image/png', purpose: 'any' },
+      { src: APP_ICON_512_MASKABLE, sizes: '512x512', type: 'image/png', purpose: 'maskable' }
     ]
   };
   const blob = new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' });
@@ -57,7 +62,7 @@ if (!token) {
     document.title = `${card.full_name} · My card`;
     document.querySelector('meta[name="theme-color"]').setAttribute('content', card.theme.accent || DEFAULT_ACCENT);
     document.querySelector('meta[name="apple-mobile-web-app-title"]').setAttribute('content', (card.full_name || 'Card').split(' ')[0]);
-    document.getElementById('apple-icon').href = card.photo_url || BRAND_LOGO;
+    document.getElementById('apple-icon').href = APP_ICON_180;
 
     const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     document.getElementById('logo').src = dark ? BRAND_LOGO_ON_DARK : BRAND_LOGO;
