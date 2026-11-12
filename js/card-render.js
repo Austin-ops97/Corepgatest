@@ -51,7 +51,7 @@ export function cardFaceHtml(card, mode = 'public') {
     ? `<img class="dc-photo" src="${esc(card.photo_url)}" alt="${esc(card.full_name || 'Headshot')}" />`
     : `<div class="dc-photo dc-photo-fallback" aria-hidden="true">${esc((card.full_name || 'C').slice(0, 1).toUpperCase())}</div>`;
 
-  const saveRow = mode === 'public'
+  const saveRow = (mode === 'public' || mode === 'preview')
     ? `<div class="dc-primary-row">
         <button type="button" class="dc-primary" data-save-contact>${icon('save')}<span>Save contact</span></button>
         <button type="button" class="dc-ghost" data-share-card>${icon('share')}<span>Share</span></button>
