@@ -43,6 +43,50 @@ let photoFile = null;
 let logoFile = null;
 let slugManual = false;
 let selectedTemplate = 'classic';
+const tabEdit = document.getElementById('tab-edit');
+const tabPreview = document.getElementById('toggle-preview');
+
+function currentNavView() {
+  if (!builderView.hidden && previewPane.classList.contains('open')) return 'preview';
+  if (!builderView.hidden) return 'builder';
+  return 'dash';
+}
+
+function syncBuilderTabs(view) {
+  const previewing = view === 'preview';
+  tabEdit?.classList.toggle('active', !previewing);
+  tabPreview?.classList.toggle('active', previewing);
+  tabEdit?.setAttribute('aria-selected', String(!previewing));
+  tabPreview?.setAttribute('aria-selected', String(previewing));
+}
+
+function setNavView(view, historyMode = 'none') {
+  if (view === 'preview') {
+    hide(dashView);
+    show(builderView);
+    previewPane.classList.add('open');
+    document.body.classList.add('builder-open', 'preview-open');
+    refreshPreview();
+  } else if (view === 'builder') {
+    hide(dashView);
+    show(builderView);
+    previewPane.classList.remove('open');
+    document.body.classList.add('builder-open');
+    document.body.classList.remove('preview-open');
+  } else {
+    hide(builderView);
+    show(dashView);
+    previewPane.classList.remove('open');
+    document.body.classList.remove('builder-open', 'preview-open');
+  }
+  syncBuilderTabs(view);
+  const path = view === 'dash' ? '/admin/' : `/admin/#${view}`;
+  if (historyMode === 'push' && history.state?.view !== view) {
+    history.pushState({ view }, '', path);
+  } else if (historyMode === 'replace') {
+    history.replaceState({ view }, '', path);
+  }
+}
 
 function show(el) { el.hidden = false; }
 function hide(el) { el.hidden = true; }
@@ -158,11 +202,34 @@ listEl.addEventListener('click', async (e) => {
 
 document.getElementById('new-card').addEventListener('click', () => openBuilder(emptyCard()));
 document.getElementById('back-dash').addEventListener('click', () => {
-  hide(builderView);
-  show(dashView);
+  if (history.state?.view === 'builder' || history.state?.view === 'preview') {
+    if (history.state?.view === 'preview') history.go(-2);
+    else history.back();
+    return;
+  }
+  setNavView('dash', 'replace');
 });
-document.getElementById('toggle-preview').addEventListener('click', () => {
-  previewPane.classList.toggle('open');
+tabEdit?.addEventListener('click', () => {
+  if (currentNavView() === 'preview' && history.state?.view === 'preview') {
+    history.back();
+    return;
+  }
+  setNavView('builder', 'replace');
+});
+tabPreview?.addEventListener('click', () => {
+  if (currentNavView() === 'preview') return;
+  setNavView('preview', 'push');
+});
+document.getElementById('close-preview').addEventListener('click', () => {
+  if (history.state?.view === 'preview') {
+    history.back();
+    return;
+  }
+  setNavView('builder', 'replace');
+});
+window.addEventListener('popstate', (event) => {
+  const view = event.state?.view || (location.hash === '#preview' ? 'preview' : location.hash === '#builder' ? 'builder' : 'dash');
+  setNavView(view, 'none');
 });
 
 function renderRepeat(root, rows, kind) {
@@ -311,8 +378,7 @@ function refreshPreview() {
 function openBuilder(card) {
   fillForm(card);
   builderHeading.textContent = card.id ? `Edit ${card.full_name || 'card'}` : 'New card';
-  hide(dashView);
-  show(builderView);
+  setNavView('builder', currentNavView() === 'dash' ? 'push' : 'replace');
   window.scrollTo({ top: 0 });
 }
 
@@ -502,11 +568,15 @@ async function deleteCard(card) {
 
 supabase.auth.onAuthStateChange(async (event) => {
   if (event === 'SIGNED_OUT') {
+    document.body.classList.remove('builder-open', 'preview-open');
     hide(appView);
     show(loginView);
   }
 });
 
 const session = await requireAdmin();
-if (session) await loadCards();
+if (session) {
+  await loadCards();
+  if (!history.state?.view) history.replaceState({ view: 'dash' }, '', '/admin/');
+}
 renderTemplates();

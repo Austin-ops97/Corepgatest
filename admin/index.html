@@ -56,15 +56,19 @@
 
     <section id="builder-view" class="builder" hidden>
       <div class="builder-bar">
-        <button type="button" class="btn-ghost" id="back-dash">← All cards</button>
+        <button type="button" class="builder-back" id="back-dash">
+          <span aria-hidden="true">←</span>
+          <span>Cards</span>
+        </button>
         <div class="builder-bar-title">
           <p class="kicker">Builder</p>
           <h2 id="builder-heading">New card</h2>
         </div>
-        <div class="builder-bar-actions">
-          <button type="button" class="btn-ghost" id="toggle-preview">Preview</button>
-          <button type="button" class="btn-primary" id="save-card">Save card</button>
+        <div class="builder-tabs" role="tablist" aria-label="Builder views">
+          <button type="button" class="builder-tab active" id="tab-edit" role="tab" aria-selected="true">Edit</button>
+          <button type="button" class="builder-tab" id="toggle-preview" role="tab" aria-selected="false">Preview</button>
         </div>
+        <button type="button" class="btn-primary" id="save-card">Save</button>
       </div>
       <div class="builder-grid">
         <form id="card-form" class="builder-form">
@@ -120,6 +124,13 @@
         </form>
 
         <aside id="preview-pane" class="preview-pane">
+          <div class="preview-toolbar">
+            <button type="button" class="builder-back" id="close-preview">
+              <span aria-hidden="true">←</span>
+              <span>Edit</span>
+            </button>
+            <strong>Preview</strong>
+          </div>
           <div class="phone">
             <div class="phone-notch"></div>
             <div id="live-preview" class="phone-screen"></div>
