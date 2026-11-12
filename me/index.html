@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="My card" />
+  <meta name="theme-color" content="#0071C2" />
+  <link rel="apple-touch-icon" id="apple-icon" href="https://2pbqjgxycewduhvh.public.blob.vercel-storage.com/CORE%20Whole%20Logo%20Transparent%20Black%20Text%20edit.png" />
+  <link rel="manifest" id="manifest-link" href="data:application/manifest+json,{}" />
+  <title>My CorePGA card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700&family=Source+Sans+3:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./app.css" />
+</head>
+<body>
+  <div id="install-hint" class="hint" hidden>
+    <button type="button" class="hint-x" id="dismiss-hint" aria-label="Dismiss">✕</button>
+    <strong>Add to Home Screen</strong>
+    <p>On iPhone: tap Share, then <em>Add to Home Screen</em>. On Android: use the browser menu and choose <em>Install app</em> or <em>Add to Home screen</em>.</p>
+  </div>
+
+  <main id="app" class="app" hidden>
+    <img id="logo" class="logo" alt="Core PGA" />
+    <img id="photo" class="photo" alt="" hidden />
+    <div id="photo-fallback" class="photo fallback" hidden></div>
+    <h1 id="name"></h1>
+    <p id="title" class="title"></p>
+    <p class="caption">Have someone scan this QR to open your card</p>
+    <div id="qr" class="qr"></div>
+    <div class="actions">
+      <button type="button" class="btn primary" id="share">Share card link</button>
+      <button type="button" class="btn" id="copy">Copy link</button>
+      <button type="button" class="btn" id="save">Save my contact</button>
+    </div>
+  </main>
+
+  <p id="status" class="status">Loading your card…</p>
+  <script src="../vendor/qrcode.min.js"></script>
+  <script src="../corepga-qr.js"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

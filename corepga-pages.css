@@ -781,68 +781,8 @@ textarea { min-height: 130px; resize: vertical; }
   border-radius: 8px;
 }
 
-/* Team / specialist cards */
-.specialist-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
-}
-.specialist-card {
-  display: grid;
-  gap: 4px;
-  border-color: rgba(0, 113, 194, 0.16);
-}
-.specialist-card h3 { margin-bottom: 4px; font-size: 26px; }
-.specialist-title {
-  margin: 0 0 4px;
-  font-family: var(--cond);
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--b5);
-}
-.specialist-org { margin: 0 0 12px; color: var(--ink2); }
-.specialist-meta {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 16px;
-  display: grid;
-  gap: 6px;
-}
-.specialist-meta li {
-  color: var(--ink2);
-  font-size: 15px;
-}
-.specialist-meta span {
-  display: inline-block;
-  min-width: 58px;
-  font-family: var(--cond);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted2);
-}
-.specialist-meta a { color: var(--b5); }
-.specialist-qr {
-  width: min(220px, 100%);
-  margin: 8px auto 0;
-  padding: 10px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-}
-.specialist-qr-caption {
-  margin: 10px 0 0;
-  text-align: center;
-  font-size: 14px;
-  color: var(--muted);
-}
-.missing-field { color: #9a4b16; font-style: italic; }
-.specialist-edit-note { margin-top: 28px; }
-
 @media (max-width: 1000px) {
-  .presentation-qr-layout,
-  .specialist-grid { grid-template-columns: 1fr; }
+  .presentation-qr-layout { grid-template-columns: 1fr; }
 }
 
 @media print {

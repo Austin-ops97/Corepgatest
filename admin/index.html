@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Card builder | Core PGA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../js/cards.css" />
+  <link rel="stylesheet" href="./admin.css" />
+</head>
+<body>
+  <div id="login-view" class="login-shell" hidden>
+    <div class="login-card">
+      <img class="login-logo" src="https://2pbqjgxycewduhvh.public.blob.vercel-storage.com/CORE%20Whole%20Logo%20Transparent%20Black%20Text%20edit.png" alt="Core PGA" />
+      <p class="kicker">Admin</p>
+      <h1>Digital card builder</h1>
+      <p class="login-lead">Sign in to create employee cards, share install links, and print QR codes.</p>
+      <form id="login-form">
+        <label>Email<input type="email" name="email" autocomplete="username" required /></label>
+        <label>Password<input type="password" name="password" autocomplete="current-password" required /></label>
+        <button class="btn-primary" type="submit">Sign in</button>
+        <p id="login-error" class="form-error" hidden></p>
+      </form>
+    </div>
+  </div>
+
+  <div id="app-view" hidden>
+    <header class="admin-header">
+      <a class="brand" href="../index.html">
+        <img src="https://2pbqjgxycewduhvh.public.blob.vercel-storage.com/CORE%20Whole%20Logo%20Transparent%20Black%20Text%20edit.png" alt="Core PGA" />
+      </a>
+      <div class="header-actions">
+        <span id="admin-email" class="admin-email"></span>
+        <button type="button" class="btn-ghost" id="sign-out">Sign out</button>
+      </div>
+    </header>
+
+    <section id="dash-view" class="dash wrap">
+      <div class="dash-head">
+        <div>
+          <p class="kicker">Cards</p>
+          <h1>Business cards</h1>
+          <p class="lead">Create a card, send the employee their Home Screen app, and share the public QR.</p>
+        </div>
+        <button type="button" class="btn-primary" id="new-card">New card</button>
+      </div>
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Search by name, title, slug, or email" />
+        <span id="card-count" class="count"></span>
+      </div>
+      <div id="card-list" class="card-list"></div>
+      <p id="dash-empty" class="empty" hidden>No cards yet. Create the first one.</p>
+    </section>
+
+    <section id="builder-view" class="builder" hidden>
+      <div class="builder-bar">
+        <button type="button" class="btn-ghost" id="back-dash">← All cards</button>
+        <div class="builder-bar-title">
+          <p class="kicker">Builder</p>
+          <h2 id="builder-heading">New card</h2>
+        </div>
+        <div class="builder-bar-actions">
+          <button type="button" class="btn-ghost" id="toggle-preview">Preview</button>
+          <button type="button" class="btn-primary" id="save-card">Save card</button>
+        </div>
+      </div>
+      <div class="builder-grid">
+        <form id="card-form" class="builder-form">
+          <fieldset>
+            <legend>Identity</legend>
+            <label>Full name<input name="full_name" required maxlength="120" placeholder="Jordan Hale" /></label>
+            <label>Title<input name="title" maxlength="120" placeholder="Principal Advisor" /></label>
+            <div class="two">
+              <label>Company<input name="company" maxlength="160" /></label>
+              <label>Website<input name="website" type="url" placeholder="https://www.corepga.com" /></label>
+            </div>
+            <label>Email<input name="email" type="email" placeholder="name@corepga.com" /></label>
+            <div>
+              <div class="row-label">Phone numbers</div>
+              <div id="phones" class="repeat"></div>
+              <button type="button" class="btn-text" id="add-phone">+ Add phone</button>
+            </div>
+            <label>Address<textarea name="address" rows="2" placeholder="City, State"></textarea></label>
+            <label>LinkedIn<input name="linkedin" type="url" placeholder="https://www.linkedin.com/in/…" /></label>
+            <div>
+              <div class="row-label">Other links</div>
+              <div id="links" class="repeat"></div>
+              <button type="button" class="btn-text" id="add-link">+ Add link</button>
+            </div>
+            <label>Short bio<textarea name="bio" rows="4" maxlength="500" placeholder="One or two sentences."></textarea></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Media</legend>
+            <div class="two">
+              <label class="file-field">Headshot
+                <input name="photo" type="file" accept="image/jpeg,image/png,image/webp,image/gif" />
+                <span class="file-hint">Square photo, up to 5 MB</span>
+              </label>
+              <label class="file-field">Logo
+                <input name="logo" type="file" accept="image/jpeg,image/png,image/webp,image/gif" />
+                <span class="file-hint">Optional. CorePGA logo is used by default.</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Look & URL</legend>
+            <div class="row-label">Template</div>
+            <div id="templates" class="templates"></div>
+            <label>Accent color<input name="accent" type="color" /></label>
+            <label>URL slug
+              <input name="slug" required pattern="^[a-z0-9]([a-z0-9-]*[a-z0-9])?$" maxlength="80" />
+              <span class="file-hint">Public card: /c/<span id="slug-live">name</span></span>
+            </label>
+            <label class="check"><input name="is_active" type="checkbox" checked /> Active (public + employee links work)</label>
+          </fieldset>
+        </form>
+
+        <aside id="preview-pane" class="preview-pane">
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div id="live-preview" class="phone-screen"></div>
+          </div>
+          <p class="preview-caption">Live preview · public card</p>
+        </aside>
+      </div>
+      <p id="builder-status" class="status" hidden></p>
+    </section>
+  </div>
+
+  <div id="share-modal" class="modal" hidden>
+    <div class="modal-box">
+      <button type="button" class="modal-x" id="close-share" aria-label="Close">✕</button>
+      <p class="kicker">Ready to share</p>
+      <h2 id="share-name">Card saved</h2>
+      <p class="lead">Send the employee their private app link. The QR opens the public card.</p>
+
+      <label class="copy-row">Employee app link
+        <span>
+          <input id="emp-link" readonly />
+          <button type="button" data-copy="emp-link">Copy</button>
+        </span>
+      </label>
+      <label class="copy-row">Public card link
+        <span>
+          <input id="pub-link" readonly />
+          <button type="button" data-copy="pub-link">Copy</button>
+        </span>
+      </label>
+      <div class="share-actions">
+        <button type="button" class="btn-primary" id="share-emp">Share employee link</button>
+        <button type="button" class="btn-ghost" id="share-pub">Share public link</button>
+      </div>
+      <div class="qr-print">
+        <div id="admin-qr" class="qr-box"></div>
+        <div>
+          <p>Printable QR for the public card. Tape it on a badge, email it, or save a PNG.</p>
+          <button type="button" class="btn-ghost" id="download-qr">Download QR</button>
+          <button type="button" class="btn-ghost" id="print-qr">Print QR</button>
+          <button type="button" class="btn-text" id="regen-token">Reset employee link</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p id="toast" class="toast" hidden></p>
+  <script src="../vendor/qrcode.min.js"></script>
+  <script src="../corepga-qr.js"></script>
+  <script type="module" src="./admin.js"></script>
+</body>
+</html>

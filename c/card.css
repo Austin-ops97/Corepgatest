@@ -1,0 +1,26 @@
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(ellipse at top, rgba(0, 161, 230, 0.16), transparent 55%),
+    #eaf1f9;
+  font-family: "Source Sans 3", system-ui, sans-serif;
+}
+.page {
+  width: min(430px, calc(100% - 24px));
+  margin: 0 auto;
+  padding: calc(20px + env(safe-area-inset-top)) 0 calc(28px + env(safe-area-inset-bottom));
+}
+.status {
+  text-align: center;
+  color: #4e6a87;
+  padding: 80px 20px;
+}
+[hidden] { display: none !important; }
+@media (prefers-color-scheme: dark) {
+  html, body {
+    background:
+      radial-gradient(ellipse at top, rgba(0, 161, 230, 0.2), transparent 50%),
+      #050b12;
+  }
+}
