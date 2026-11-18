@@ -68,31 +68,33 @@ a { color: inherit; text-decoration: none; }
   transform: translateX(-8px);
 }
 
-.navlinks { display: flex; align-items: center; gap: 6px; }
+.navlinks { display: flex; align-items: center; gap: 4px; flex-wrap: nowrap; }
 .nl {
   font-family: var(--cond);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.11em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--muted);
-  padding: 8px 12px;
+  padding: 8px 9px;
   border-radius: 4px;
+  white-space: nowrap;
   transition: color 0.18s, background 0.18s;
 }
 .nl:hover, .nl.active { color: var(--b5); background: var(--btint); }
 
 .nl-cta {
   font-family: var(--cond);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--white);
   background: var(--b5);
-  padding: 10px 22px;
+  padding: 10px 16px;
   border-radius: 4px;
-  margin-left: 6px;
+  margin-left: 4px;
+  white-space: nowrap;
   box-shadow: 0 2px 12px rgba(0, 113, 194, 0.28);
 }
 .nl-cta:hover { background: var(--b4); }
@@ -132,7 +134,7 @@ a { color: inherit; text-decoration: none; }
 }
 .mobile-nav a:hover { color: var(--b5); background: var(--btint); }
 
-@media (max-width: 1180px) {
+@media (max-width: 1260px) {
   .navlinks { display: none; }
   .hamburger { display: block; }
 }

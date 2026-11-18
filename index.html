@@ -61,8 +61,8 @@
       transform: translateX(-8px);
     }
 
-    .navlinks { display: flex; align-items: center; gap: 8px; }
-    .nl { font-family: var(--cond); font-size: 13px; font-weight: 600; letter-spacing: .11em; text-transform: uppercase; color: var(--muted); padding: 8px 12px; border-radius: 4px; background: transparent; border: none; cursor: pointer; transition: color .18s, background .18s; }
+    .navlinks { display: flex; align-items: center; gap: 4px; flex-wrap: nowrap; }
+    .nl { font-family: var(--cond); font-size: 12px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); padding: 8px 9px; border-radius: 4px; background: transparent; border: none; cursor: pointer; transition: color .18s, background .18s; white-space: nowrap; }
     .nl:hover, .nl.active { color: var(--b5); background: var(--btint); }
     .navlinks .nl[href^="#"] { position: relative; }
     .navlinks .nl[href^="#"]::after {
@@ -79,7 +79,7 @@
       transition: transform .18s ease;
     }
     .navlinks .nl[href^="#"].is-anchor-current::after { transform: scaleX(1); }
-    .nl-cta { font-family: var(--cond); font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--white); background: var(--b5); padding: 10px 22px; border-radius: 4px; border: none; cursor: pointer; margin-left: 6px; box-shadow: 0 2px 12px rgba(0,113,194,.28); transition: all .2s; }
+    .nl-cta { font-family: var(--cond); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--white); background: var(--b5); padding: 10px 16px; border-radius: 4px; border: none; cursor: pointer; margin-left: 4px; box-shadow: 0 2px 12px rgba(0,113,194,.28); transition: all .2s; white-space: nowrap; }
     .nl-cta:hover { background: var(--b4); box-shadow: 0 5px 20px rgba(0,113,194,.38); transform: translateY(-1px); }
     .hamburger { display: none; background: transparent; border: 1px solid var(--line); border-radius: 4px; padding: 9px 14px; color: var(--muted); font-family: var(--cond); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; }
     .mobile-nav { display: none; background: var(--white); border-top: 1px solid var(--line); padding: 8px 0 14px; box-shadow: 0 8px 24px rgba(0,50,100,.08); }
@@ -203,6 +203,16 @@
     .tech-item { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; color: var(--ink2); padding: 9px 0; border-bottom: 1px solid var(--line2); }
     .tech-item::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--b3); flex-shrink: 0; }
 
+    /* WHO WE ARE */
+    #home, #expertise, #services, #who-we-are { scroll-margin-top: 96px; }
+    .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .trust-card { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 28px 24px; box-shadow: var(--sh); transition: transform .22s var(--ease), box-shadow .22s; }
+    .trust-card:hover { transform: translateY(-5px); box-shadow: var(--sh2); }
+    .trust-icon-wrap { width: 52px; height: 52px; border-radius: 10px; background: linear-gradient(135deg, var(--btint2) 0%, var(--btint) 100%); border: 1px solid rgba(0,161,230,.20); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+    .trust-icon-wrap svg { width: 24px; height: 24px; }
+    .trust-card h5 { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 10px; line-height: 1.2; }
+    .trust-card p { font-size: 14.5px; line-height: 1.7; color: var(--muted); }
+
     /* CTA BAND */
     .cta-band { background: linear-gradient(135deg, var(--rich-black) 0%, var(--b5) 60%, var(--b3) 100%); padding: 72px 0; position: relative; overflow: hidden; }
     .cta-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 100% at 80% 50%, rgba(51,221,255,.15), transparent 60%); }
@@ -263,7 +273,7 @@
     @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
     @keyframes fadeIn { from{opacity:0} to{opacity:1} }
 
-    @media(max-width:1180px) {
+    @media(max-width:1260px) {
       .navlinks { display: none; }
       .hamburger { display: block; }
     }
@@ -273,6 +283,7 @@
       .hero-wash::before { inset: 0; opacity: .35; background-position: center; }
       .exp-grid { grid-template-columns: 1fr; }
       .services-layout { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: 1fr 1fr; }
       .contact-layout { grid-template-columns: 1fr; }
       .stats-inner { grid-template-columns: 1fr 1fr; }
       .stat-block:nth-child(2) { border-right: none; }
@@ -283,6 +294,7 @@
     @media(max-width:600px) {
       section { padding: 64px 0; }
       .hero-wash::before { inset: 0; opacity: .35; }
+      .trust-grid { grid-template-columns: 1fr; }
       .row2 { grid-template-columns: 1fr; }
       .sec-head-row { flex-direction: column; align-items: flex-start; }
       .tech-grid { grid-template-columns: 1fr; }
@@ -306,6 +318,7 @@
         <a class="nl active" href="#home">Home</a>
         <a class="nl" href="#expertise">Expertise</a>
         <a class="nl" href="#services">Services</a>
+        <a class="nl" href="#who-we-are">Who We Are</a>
         <a class="nl" href="why-core.html">Why Core</a>
         <a class="nl" href="about.html">About</a>
         <a class="nl" href="projects.html">Projects</a>
@@ -318,6 +331,7 @@
     <a href="#home" onclick="closeMNav()">Home</a>
     <a href="#expertise" onclick="closeMNav()">Expertise</a>
     <a href="#services" onclick="closeMNav()">Services</a>
+    <a href="#who-we-are" onclick="closeMNav()">Who We Are</a>
     <a href="why-core.html" onclick="closeMNav()">Why Core</a>
     <a href="about.html" onclick="closeMNav()">About</a>
     <a href="projects.html" onclick="closeMNav()">Projects</a>
@@ -473,6 +487,42 @@
           <div class="tech-item">Power plant electrical</div><div class="tech-item">Medium-voltage dist.</div>
           <div class="tech-item">Control relay install</div><div class="tech-item">GE · Siemens · Toshiba · Mitsubishi</div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- WHO WE ARE -->
+<section id="who-we-are" class="section-bg">
+  <div class="wrap">
+    <div class="sec-head sec-head-row">
+      <div>
+        <div class="sec-eye r">Who We Are</div>
+        <p class="sec-lead r3">Core PGA provides trusted oversight and support, delivering professionalism measured by results.</p>
+      </div>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card r">
+        <div class="trust-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#0071c2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3"/><circle cx="4" cy="17" r="2.5"/><circle cx="20" cy="17" r="2.5"/><line x1="10" y1="10.5" x2="5.5" y2="15"/><line x1="14" y1="10.5" x2="18.5" y2="15"/><line x1="7" y1="17" x2="17" y2="17"/></svg></div>
+        <h5>Elite Specialists</h5>
+        <p>A network of top-tier specialists across all major power generation disciplines, curated for high-stakes engagements that demand precision and proven experience.</p>
+      </div>
+      <div class="trust-card r2">
+        <div class="trust-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#0071c2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="2" fill="#0071c2" stroke="none"/></svg></div>
+        <h5>Relentless Results</h5>
+        <p>Customer-centered focus to reduce total cost and protect client interests by minimizing budget, schedule, and execution risk across every engagement.</p>
+      </div>
+      <div class="trust-card r3">
+        <div class="trust-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#0071c2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12,6 12,12 16,14"/></svg></div>
+        <h5>Efficient Restoration</h5>
+        <p>Proven ability to compress restoration and outage schedules and return units to service safely and efficiently—with full verification and commissioning support.</p>
+      </div>
+      <div class="trust-card r4">
+        <div class="trust-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#0071c2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 6v6c0 5.5 3.8 9.7 9 11 5.2-1.3 9-5.5 9-11V6L12 2z"/><polyline points="8,12 11,15 16,9"/></svg></div>
+        <h5>Disciplined Expertise</h5>
+        <p>Deep technical expertise combined with a disciplined, process-driven approach to execution and risk management throughout every project phase.</p>
       </div>
     </div>
   </div>
