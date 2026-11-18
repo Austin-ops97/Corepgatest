@@ -79,14 +79,21 @@
         <div
           class="why-video-frame"
           data-why-video
-          data-video-src=""
-          data-video-poster=""
-          hidden
+          data-video-src="https://x5k6o7gujsbjgl5q.public.blob.vercel-storage.com/corepga/presentation.mp4"
+          data-video-poster="https://x5k6o7gujsbjgl5q.public.blob.vercel-storage.com/corepga/presentation-poster.jpg"
         >
-          <video id="whyCoreVideo" controls playsinline preload="metadata"></video>
+          <video
+            id="whyCoreVideo"
+            controls
+            playsinline
+            preload="metadata"
+            poster="https://x5k6o7gujsbjgl5q.public.blob.vercel-storage.com/corepga/presentation-poster.jpg"
+          >
+            <source src="https://x5k6o7gujsbjgl5q.public.blob.vercel-storage.com/corepga/presentation.mp4" type="video/mp4" />
+          </video>
         </div>
 
-        <div id="whyVideoSoon" class="card presentation-soon why-video-soon">
+        <div id="whyVideoSoon" class="card presentation-soon why-video-soon" hidden>
           <span class="kicker">Coming soon</span>
           <h2>Presentation video is being prepared</h2>
           <p class="lead">The CorePGA briefing will appear here as soon as the hosted video URL is set. Until then, review why customers choose Core below, or request a capability review.</p>

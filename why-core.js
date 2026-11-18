@@ -27,6 +27,8 @@
     return;
   }
 
+  const source = video.querySelector("source");
+  if (source) source.src = src;
   video.src = src;
   if (poster) video.setAttribute("poster", poster);
   else video.removeAttribute("poster");

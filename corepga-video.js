@@ -4,6 +4,6 @@
  * in-page “coming soon” fallback.
  */
 window.CorepgaVideo = {
-  src: "",
-  poster: ""
+  src: "https://x5k6o7gujsbjgl5q.public.blob.vercel-storage.com/corepga/presentation.mp4",
+  poster: "https://x5k6o7gujsbjgl5q.public.blob.vercel-storage.com/corepga/presentation-poster.jpg"
 };
