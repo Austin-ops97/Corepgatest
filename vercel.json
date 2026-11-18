@@ -1,5 +1,9 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    { "source": "/presentation", "destination": "/why-core#video", "permanent": false },
+    { "source": "/presentation.html", "destination": "/why-core#video", "permanent": false }
+  ],
   "rewrites": [
     { "source": "/c/:slug", "destination": "/c" },
     { "source": "/c/:slug/", "destination": "/c" },
