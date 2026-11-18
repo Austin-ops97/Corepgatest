@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const PRODUCTION_PRESENTATION_URL = 'https://corepgatest.vercel.app/presentation.html';
+  const PRODUCTION_PRESENTATION_URL = 'https://corepgatest.vercel.app/why-core.html#video';
   const VIDEO_SRC = 'assets/presentation.mp4';
   const POSTER_SRC = 'assets/presentation-poster.jpg';
 
@@ -11,7 +11,7 @@
       if (loc.hostname === 'localhost' || loc.hostname === '127.0.0.1') {
         return PRODUCTION_PRESENTATION_URL;
       }
-      return new URL('presentation.html', loc.origin + '/').href;
+      return new URL('why-core.html#video', loc.origin + '/').href;
     }
     return PRODUCTION_PRESENTATION_URL;
   }
