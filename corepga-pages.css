@@ -344,12 +344,12 @@ a.btn-secondary {
 .timeline .step:first-child { padding-top: 14px; }
 .page-projects .phase-strip + .timeline { margin-top: 32px; }
 
+footer,
 .site-footer {
   background: var(--ink);
-  padding: 48px 0 34px;
-  margin-top: 28px;
+  padding: 48px 0 36px;
 }
-.foot { display: flex; align-items: flex-start; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
+.foot { display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
 .foot-logo img { height: 44px; width: auto; margin-bottom: 14px; }
 .foot-tagline {
   font-family: var(--cond);
@@ -359,24 +359,34 @@ a.btn-secondary {
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.4);
 }
-.foot-links { display: flex; gap: 36px; flex-wrap: wrap; }
+.foot-links { display: flex; gap: 40px; flex-wrap: wrap; }
 .foot-col h6 {
   margin: 0 0 14px;
   font-family: var(--cond);
   font-size: 11px;
+  font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.45);
 }
-.foot-col a {
+.foot-col a,
+.foot-col button {
   display: block;
   margin-bottom: 9px;
   color: rgba(255, 255, 255, 0.65);
   font-size: 14px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+  font-family: var(--body);
+  transition: color 0.15s;
 }
-.foot-col a:hover { color: var(--b1); }
+.foot-col a:hover,
+.foot-col button:hover { color: var(--b1); }
 .foot-bottom {
-  margin-top: 34px;
+  margin-top: 36px;
   padding-top: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   font-size: 13px;
@@ -904,7 +914,7 @@ textarea { min-height: 130px; resize: vertical; }
   .grid-4, .stat-grid { grid-template-columns: 1fr; }
   .stat { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.15); }
   .stat:last-child { border-bottom: none; }
-  .foot-links { flex-direction: column; gap: 22px; }
+  .foot-links { flex-direction: column; gap: 24px; }
   .brand img { height: 40px; max-width: 210px; transform: translateX(-6px); }
 }
 
@@ -968,6 +978,7 @@ textarea { min-height: 130px; resize: vertical; }
 
 @media print {
   .site-header,
+  footer,
   .site-footer,
   .no-print,
   .hamburger,
